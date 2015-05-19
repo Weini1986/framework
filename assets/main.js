@@ -18,6 +18,9 @@
 			success: function(content) {
 				var app = $(content).filter('#splaceApp');
 				splaceApp.append(app);
+			},
+			error: function() {
+				alert('There was an error loading your app called \'' + name + '\' please check the name again.');
 			}
 		});
 
@@ -58,7 +61,14 @@
 		}
 	}
 
+	var blurAppInput = function() {
+		var appName = $('#inptAppName').val();
+		splaceApp.data('name', appName);
+		localStorage.setItem('inptAppName', appName);
+	}
+
 	$('#btnload').on('click', loadFN);
 	$('#btnRmv').on('click', rmvFN);
+	$('#inptAppName').on('blur', blurAppInput);
 
 })(jQuery)

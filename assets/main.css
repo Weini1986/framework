@@ -1,0 +1,13 @@
+.ipadEmulation {
+	width: 1024px;
+	height: 730px;
+}
+
+#deviceEmulator {
+	border: 1px solid black;
+	overflow: hidden;
+}
+
+div.controls span.header {
+	font-weight: bold;
+}

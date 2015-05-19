@@ -3,19 +3,53 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Demo Content</title>
+	<link rel="stylesheet" type="text/css" href="assets/main.css">
 	<style>
 		
 	</style>
 </head>
 <body>
-	<div id="splaceApp" data-folder="app" data-name="dummy">
-		
+	<div class="controls">
+		<span class="header">Splace-Magazine Test Framework</span>
+		<input id="inptAppName" type="text" value="dummy">
+		<button id="btnload">Load</button>
+		<button id="btnRmv">Remove</button>
 	</div>
 
-	<button id="btnload">Load</button>
-	<button id="btnRmv">Remove</button>
+	<div id="importantHints" class="importantHints">
+		<p>Important! It seems that your browser is not able to load some of the resources needed to run this site. To overcome this please use Chrome or Safar or served this site through a webserver. Your widget is going to be loaded through an AJAX web call. These calls are restricted by a security manager that will only allow loading resources from a common URL.</p>
+		<p>An easy to use web server for Windows is available in the <a href="https://www.apachefriends.org/">XAMPP project</a>.</p>
+	</div>
+
+	<div id="deviceEmulator" class="ipadEmulation">
+		<div id="splaceApp" data-folder="app" data-name="dummy">
+		
+		</div>
+	</div>
+	
+	<div class="help">
+		<p>This window above is exactly 1024x730 px large which is going to be roughtly the viewport we are going to have on an iPad.</p>
+		<p>Use the "load" button above to load and the "remove" to remove your widget from the main framework.</p>
+		<p>Place your widget in the folder "app/" all files named according to the following naming conventions.</p>
+		<p>If your app is named dummy you will have "dummy.html", "dummy.css", and "dummy.js".</p>
+	</div>
 
 	<script src="vendor/jquery.min.js"></script>
 	<script src="assets/main.js"></script>
+	<script>
+		$(document).ready(function() {
+			$.ajax({
+				url: 'index.html', 
+				async: false,
+				success: function(content) {
+					$('#importantHints').hide();
+				}
+			});
+			var appNameCookie = localStorage.getItem('inptAppName');
+			if(appNameCookie) {
+				$('#inptAppName').val(appNameCookie);
+			}
+		});
+	</script>
 </body>
 </html>
